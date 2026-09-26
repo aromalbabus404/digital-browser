@@ -34,9 +34,9 @@ export const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Contact Master Pools on WhatsApp"
-        className={`fixed bottom-6 right-6 z-40 flex items-center gap-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-4 py-3 rounded-full shadow-2xl transition-all transform hover:scale-105 border border-emerald-300/40 backdrop-blur-md ${className}`}
+        className={`fixed bottom-16 sm:bottom-6 right-4 sm:right-6 z-40 flex items-center gap-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold p-3 sm:px-4 sm:py-3 rounded-full shadow-2xl transition-all transform hover:scale-105 border border-emerald-300/40 backdrop-blur-md ${className}`}
       >
-        <MessageCircle className="w-6 h-6 fill-slate-950 stroke-emerald-500" />
+        <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 fill-slate-950 stroke-emerald-500" />
         <span className="hidden sm:inline text-xs tracking-wider uppercase">WhatsApp Us</span>
       </a>
     );

@@ -89,16 +89,16 @@ export const Cover: React.FC<CoverProps> = ({ onStartExploring }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 1.0 }}
-        className="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-4 pb-20 sm:pb-20 border-t border-white/10 pt-3"
+        className="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-3 pb-24 sm:pb-20 border-t border-white/10 pt-3 px-2 text-center"
       >
-        <div className="flex items-center gap-2 font-mono text-[10px] sm:text-xs tracking-widest text-slate-400 uppercase">
-          <MapPin className="w-3.5 h-3.5 text-aqua" />
+        <div className="flex items-center justify-center gap-2 font-mono text-[10px] sm:text-xs tracking-widest text-slate-400 uppercase">
+          <MapPin className="w-3.5 h-3.5 text-aqua shrink-0" />
           <span>Alappuzha • Kerala • India</span>
         </div>
 
         <button
           onClick={onStartExploring}
-          className="flex items-center gap-1.5 font-mono text-[10px] sm:text-xs tracking-widest text-slate-400 hover:text-aqua transition-colors animate-bounce"
+          className="inline-flex items-center gap-1.5 font-mono text-[10px] sm:text-xs tracking-widest text-aqua hover:text-white transition-colors animate-bounce glass-panel px-3.5 py-1.5 rounded-full border border-aqua/30"
         >
           <span>SWIPE OR SCROLL TO BEGIN</span>
           <ChevronDown className="w-3.5 h-3.5 text-aqua" />
