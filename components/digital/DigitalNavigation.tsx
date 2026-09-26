@@ -44,27 +44,27 @@ export const DigitalNavigation: React.FC<DigitalNavigationProps> = ({
   return (
     <>
       {/* Top Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 sm:px-8 py-4 sm:py-6 glass-panel border-b border-white/10">
+      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-3 sm:px-8 py-2.5 sm:py-4 glass-panel border-b border-white/10">
         {/* Brand Logo */}
         <button
           onClick={() => handleSelectSection(1)}
-          className="flex items-center gap-3 text-left group"
+          className="flex items-center gap-2 sm:gap-3 text-left group shrink-0"
         >
-          <div className="w-8 h-8 rounded-sm bg-gradient-to-br from-aqua to-blue-600 flex items-center justify-center font-extrabold text-slate-950 text-sm tracking-tighter shadow-[0_0_15px_rgba(0,240,255,0.4)]">
+          <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-sm bg-gradient-to-br from-aqua to-blue-600 flex items-center justify-center font-extrabold text-slate-950 text-xs sm:text-sm tracking-tighter shadow-[0_0_15px_rgba(0,240,255,0.4)]">
             MP
           </div>
           <div>
-            <span className="block font-display text-base sm:text-lg font-bold tracking-widest text-white group-hover:text-aqua transition-colors">
+            <span className="block font-display text-xs sm:text-lg font-bold tracking-wider text-white group-hover:text-aqua transition-colors whitespace-nowrap">
               MASTER POOLS
             </span>
-            <span className="block font-mono text-[9px] tracking-widest text-slate-400 uppercase">
+            <span className="hidden md:block font-mono text-[9px] tracking-widest text-slate-400 uppercase">
               Digital Catalog • Kerala
             </span>
           </div>
         </button>
 
         {/* Top Right Counter, Transition Style Switcher, Auto Play Button & Menu */}
-        <div className="flex items-center gap-2 sm:gap-4">
+        <div className="flex items-center gap-2 sm:gap-4 shrink-0">
           <PageIndicator
             currentPage={currentPage}
             totalPages={totalPages}
@@ -72,8 +72,8 @@ export const DigitalNavigation: React.FC<DigitalNavigationProps> = ({
             className="hidden lg:flex"
           />
 
-          <span className="lg:hidden font-mono text-xs font-semibold text-aqua">
-            {String(currentPage).padStart(2, "0")} / {String(totalPages).padStart(2, "0")}
+          <span className="lg:hidden font-mono text-xs sm:text-sm font-bold text-aqua whitespace-nowrap shrink-0">
+            {String(currentPage).padStart(2, "0")} <span className="text-slate-500">/</span> {String(totalPages).padStart(2, "0")}
           </span>
 
           {/* Animation Style Switcher */}
@@ -81,8 +81,8 @@ export const DigitalNavigation: React.FC<DigitalNavigationProps> = ({
             <button
               onClick={onToggleAnimationStyle}
               aria-label="Switch transition animation style"
-              title="Click to switch transition style (Parallax / 3D Flip / Vertical)"
-              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-sm glass-panel border-white/10 hover:border-aqua/50 text-slate-300 hover:text-white font-mono text-[11px] tracking-widest uppercase transition-all"
+              title={`Transition Mode: ${styleLabels[animationStyle]}`}
+              className="p-2 sm:px-2.5 sm:py-1.5 rounded-sm glass-panel border-white/10 hover:border-aqua/50 text-slate-300 hover:text-white font-mono text-[10px] tracking-widest uppercase transition-all flex items-center gap-1 shrink-0"
             >
               <Sparkles className="w-3.5 h-3.5 stroke-aqua shrink-0" />
               <span className="hidden md:inline text-[10px]">{styleLabels[animationStyle]} MODE</span>
@@ -94,15 +94,16 @@ export const DigitalNavigation: React.FC<DigitalNavigationProps> = ({
             <button
               onClick={onToggleAutoPlay}
               aria-label={isAutoPlay ? "Pause Auto Presentation" : "Start Auto Presentation"}
-              className={`flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-sm border font-mono text-[11px] sm:text-xs tracking-widest uppercase transition-all ${
+              title={isAutoPlay ? "Pause Auto Play" : "Start Auto Play"}
+              className={`p-2 sm:px-3 sm:py-1.5 rounded-sm border font-mono text-[10px] sm:text-xs tracking-widest uppercase transition-all flex items-center gap-1.5 shrink-0 ${
                 isAutoPlay
-                  ? "bg-aqua text-slate-950 font-bold border-aqua shadow-[0_0_15px_rgba(0,240,255,0.5)]"
+                  ? "bg-aqua text-slate-950 font-bold border-aqua shadow-[0_0_12px_rgba(0,240,255,0.5)]"
                   : "glass-panel text-white border-white/10 hover:border-aqua/50 hover:text-aqua"
               }`}
             >
               {isAutoPlay ? (
                 <>
-                  <Pause className="w-3.5 h-3.5 fill-slate-950" />
+                  <Pause className="w-3.5 h-3.5 fill-slate-950 stroke-none" />
                   <span className="hidden sm:inline">AUTO ON</span>
                 </>
               ) : (
@@ -117,7 +118,7 @@ export const DigitalNavigation: React.FC<DigitalNavigationProps> = ({
           <button
             onClick={() => setIsMenuOpen(true)}
             aria-label="Open Navigation Menu"
-            className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-sm glass-panel hover:border-aqua/50 text-white font-mono text-xs tracking-widest uppercase transition-all hover:text-aqua"
+            className="p-2 sm:px-4 sm:py-1.5 rounded-sm glass-panel hover:border-aqua/50 text-white font-mono text-xs tracking-widest uppercase transition-all flex items-center gap-1.5 hover:text-aqua shrink-0"
           >
             <Menu className="w-4 h-4 stroke-aqua" />
             <span className="hidden sm:inline">MENU</span>
@@ -126,11 +127,11 @@ export const DigitalNavigation: React.FC<DigitalNavigationProps> = ({
       </header>
 
       {/* Bottom Minimal Control Bar */}
-      <footer className="fixed bottom-0 left-0 right-0 z-40 flex items-center justify-between px-4 sm:px-8 py-3 sm:py-4 glass-panel border-t border-white/10">
+      <footer className="fixed bottom-0 left-0 right-0 z-40 flex items-center justify-between px-3 sm:px-8 py-2.5 sm:py-4 glass-panel border-t border-white/10">
         <button
           onClick={() => onNavigate(Math.max(1, currentPage - 1))}
           disabled={currentPage === 1}
-          className={`flex items-center gap-2 px-3 py-1.5 rounded text-xs font-mono tracking-widest uppercase transition-all ${
+          className={`flex items-center gap-1.5 sm:gap-2 px-2.5 py-1.5 rounded text-xs font-mono tracking-widest uppercase transition-all ${
             currentPage === 1
               ? "opacity-30 cursor-not-allowed text-slate-500"
               : "text-white hover:text-aqua hover:bg-white/5 active:scale-95"
@@ -141,7 +142,7 @@ export const DigitalNavigation: React.FC<DigitalNavigationProps> = ({
         </button>
 
         {/* Center Progress Line on Mobile */}
-        <div className="flex-1 max-w-[140px] sm:max-w-[220px] mx-4 md:hidden">
+        <div className="flex-1 max-w-[120px] sm:max-w-[220px] mx-2 sm:mx-4 md:hidden">
           <div className="w-full h-[2px] bg-slate-800 rounded-full overflow-hidden">
             <div
               className="h-full bg-aqua shadow-[0_0_8px_#00F0FF] transition-all duration-300"
@@ -153,7 +154,7 @@ export const DigitalNavigation: React.FC<DigitalNavigationProps> = ({
         <button
           onClick={() => onNavigate(Math.min(totalPages, currentPage + 1))}
           disabled={currentPage === totalPages}
-          className={`flex items-center gap-2 px-3 py-1.5 rounded text-xs font-mono tracking-widest uppercase transition-all ${
+          className={`flex items-center gap-1.5 sm:gap-2 px-2.5 py-1.5 rounded text-xs font-mono tracking-widest uppercase transition-all ${
             currentPage === totalPages
               ? "opacity-30 cursor-not-allowed text-slate-500"
               : "text-white hover:text-aqua hover:bg-white/5 active:scale-95"

@@ -11,7 +11,7 @@ interface CoverProps {
 
 export const Cover: React.FC<CoverProps> = ({ onStartExploring }) => {
   return (
-    <section className="relative w-full h-full min-h-screen flex flex-col justify-between p-6 sm:p-12 md:p-16 overflow-hidden">
+    <section className="relative w-full h-full min-h-screen flex flex-col justify-between p-4 sm:p-12 md:p-16 overflow-hidden">
       {/* Background Image with Dark Vignette */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -26,7 +26,7 @@ export const Cover: React.FC<CoverProps> = ({ onStartExploring }) => {
       </div>
 
       {/* Top Placeholder Spacing for Fixed Nav */}
-      <div className="relative z-10 pt-16 sm:pt-20" />
+      <div className="relative z-10 pt-14 sm:pt-20" />
 
       {/* Center Hero Content */}
       <div className="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center justify-center my-auto px-4">
@@ -35,10 +35,10 @@ export const Cover: React.FC<CoverProps> = ({ onStartExploring }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-panel border border-aqua/30 mb-6"
+          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel border border-aqua/30 mb-4 sm:mb-6"
         >
           <span className="w-2 h-2 rounded-full bg-aqua animate-ping" />
-          <span className="font-mono text-xs tracking-widest text-aqua uppercase">
+          <span className="font-mono text-[10px] sm:text-xs tracking-widest text-aqua uppercase">
             MASTER POOLS • KERALA
           </span>
         </motion.div>
@@ -48,7 +48,7 @@ export const Cover: React.FC<CoverProps> = ({ onStartExploring }) => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.4 }}
-          className="font-display font-extrabold text-4xl sm:text-6xl md:text-8xl tracking-tight text-white uppercase leading-[0.95] mb-6"
+          className="font-display font-extrabold text-3xl sm:text-6xl md:text-8xl tracking-tight text-white uppercase leading-[0.95] mb-4 sm:mb-6"
         >
           DESIGNING <br />
           <span className="bg-gradient-to-r from-white via-aqua to-blue-400 bg-clip-text text-transparent drop-shadow-[0_0_35px_rgba(0,240,255,0.4)]">
@@ -61,7 +61,7 @@ export const Cover: React.FC<CoverProps> = ({ onStartExploring }) => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="font-sans text-base sm:text-xl md:text-2xl text-slate-300 max-w-2xl font-light tracking-wide mb-8"
+          className="font-sans text-sm sm:text-xl md:text-2xl text-slate-300 max-w-2xl font-light tracking-wide mb-6 sm:mb-8"
         >
           Premium Swimming Pool <br className="hidden sm:inline" />
           <span className="font-semibold text-white">Design • Construction • Maintenance</span>
@@ -76,10 +76,10 @@ export const Cover: React.FC<CoverProps> = ({ onStartExploring }) => {
         >
           <button
             onClick={onStartExploring}
-            className="btn-aqua group px-8 py-4 rounded-sm text-sm sm:text-base font-bold tracking-widest uppercase flex items-center gap-3 shadow-[0_0_30px_rgba(0,240,255,0.4)]"
+            className="btn-aqua group px-7 py-3.5 sm:px-8 sm:py-4 rounded-sm text-xs sm:text-base font-bold tracking-widest uppercase flex items-center gap-3 shadow-[0_0_30px_rgba(0,240,255,0.4)] active:scale-95 transition-transform"
           >
             <span>START EXPLORING</span>
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
           </button>
         </motion.div>
       </div>
@@ -89,19 +89,19 @@ export const Cover: React.FC<CoverProps> = ({ onStartExploring }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 1.0 }}
-        className="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-4 pb-16 sm:pb-20 border-t border-white/10 pt-4"
+        className="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-4 pb-20 sm:pb-20 border-t border-white/10 pt-3"
       >
-        <div className="flex items-center gap-2 font-mono text-xs tracking-widest text-slate-400 uppercase">
-          <MapPin className="w-4 h-4 text-aqua" />
+        <div className="flex items-center gap-2 font-mono text-[10px] sm:text-xs tracking-widest text-slate-400 uppercase">
+          <MapPin className="w-3.5 h-3.5 text-aqua" />
           <span>Alappuzha • Kerala • India</span>
         </div>
 
         <button
           onClick={onStartExploring}
-          className="flex items-center gap-2 font-mono text-xs tracking-widest text-slate-400 hover:text-aqua transition-colors animate-bounce"
+          className="flex items-center gap-1.5 font-mono text-[10px] sm:text-xs tracking-widest text-slate-400 hover:text-aqua transition-colors animate-bounce"
         >
           <span>SWIPE OR SCROLL TO BEGIN</span>
-          <ChevronDown className="w-4 h-4 text-aqua" />
+          <ChevronDown className="w-3.5 h-3.5 text-aqua" />
         </button>
       </motion.div>
     </section>
