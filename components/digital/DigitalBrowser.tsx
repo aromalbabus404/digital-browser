@@ -20,7 +20,7 @@ import Contact from "./Contact";
 import { Project, projectsData } from "@/data/projects";
 import { Product, productsData } from "@/data/products";
 
-export type AnimationStyle = "parallax" | "flip" | "vertical";
+export type AnimationStyle = "bookflip" | "parallax" | "flip" | "vertical";
 
 export const DigitalBrowser: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -28,7 +28,7 @@ export const DigitalBrowser: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isAutoPlay, setIsAutoPlay] = useState<boolean>(false);
-  const [animationStyle, setAnimationStyle] = useState<AnimationStyle>("parallax");
+  const [animationStyle, setAnimationStyle] = useState<AnimationStyle>("bookflip");
 
   const touchStartX = useRef<number>(0);
   const touchStartY = useRef<number>(0);
@@ -62,7 +62,7 @@ export const DigitalBrowser: React.FC = () => {
   };
 
   const toggleAnimationStyle = () => {
-    const styles: AnimationStyle[] = ["parallax", "flip", "vertical"];
+    const styles: AnimationStyle[] = ["bookflip", "parallax", "flip", "vertical"];
     const nextIdx = (styles.indexOf(animationStyle) + 1) % styles.length;
     setAnimationStyle(styles[nextIdx]);
   };
@@ -146,6 +146,34 @@ export const DigitalBrowser: React.FC = () => {
   // Dynamic Premium Page Transition Styles
   const getVariants = () => {
     switch (animationStyle) {
+      case "bookflip":
+        return {
+          enter: (dir: number) => ({
+            x: dir > 0 ? "100%" : "-100%",
+            rotateY: dir > 0 ? -75 : 75,
+            scale: 0.88,
+            opacity: 0,
+            transformOrigin: dir > 0 ? "left center" : "right center",
+            filter: "brightness(0.7) blur(4px)",
+          }),
+          center: {
+            x: "0%",
+            rotateY: 0,
+            scale: 1,
+            opacity: 1,
+            transformOrigin: "center center",
+            filter: "brightness(1) blur(0px)",
+          },
+          exit: (dir: number) => ({
+            x: dir < 0 ? "100%" : "-100%",
+            rotateY: dir < 0 ? 75 : -75,
+            scale: 0.88,
+            opacity: 0,
+            transformOrigin: dir < 0 ? "right center" : "left center",
+            filter: "brightness(0.7) blur(4px)",
+          }),
+        };
+
       case "flip":
         return {
           enter: (dir: number) => ({
@@ -282,7 +310,7 @@ export const DigitalBrowser: React.FC = () => {
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
       className="relative w-screen h-screen overflow-hidden bg-slate-950 text-white select-none"
-      style={{ perspective: "1400px" }}
+      style={{ perspective: "1500px" }}
     >
       {/* Dynamic Ambient Fluid Light Orb */}
       <motion.div
@@ -318,10 +346,10 @@ export const DigitalBrowser: React.FC = () => {
             animate="center"
             exit="exit"
             transition={{
-              duration: 0.75,
+              duration: 0.7,
               ease: [0.16, 1, 0.3, 1],
             }}
-            className="w-full h-full transform-gpu"
+            className="w-full h-full transform-gpu shadow-2xl"
           >
             {renderSection()}
           </motion.div>

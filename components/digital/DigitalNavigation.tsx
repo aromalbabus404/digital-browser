@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronLeft, ChevronRight, Phone, MessageCircle, Play, Pause, Sparkles } from "lucide-react";
+import { Menu, X, ChevronLeft, ChevronRight, Phone, MessageCircle, Play, Pause, Sparkles, FastForward } from "lucide-react";
 import PageIndicator from "./PageIndicator";
 import { getWhatsAppLink } from "./WhatsAppButton";
 import { AnimationStyle } from "./DigitalBrowser";
@@ -25,7 +25,7 @@ export const DigitalNavigation: React.FC<DigitalNavigationProps> = ({
   sectionTitles,
   isAutoPlay = false,
   onToggleAutoPlay,
-  animationStyle = "parallax",
+  animationStyle = "bookflip",
   onToggleAnimationStyle,
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -36,6 +36,7 @@ export const DigitalNavigation: React.FC<DigitalNavigationProps> = ({
   };
 
   const styleLabels: Record<AnimationStyle, string> = {
+    bookflip: "BOOK PAGE",
     parallax: "PARALLAX",
     flip: "3D FLIP",
     vertical: "VERTICAL",
@@ -63,8 +64,8 @@ export const DigitalNavigation: React.FC<DigitalNavigationProps> = ({
           </div>
         </button>
 
-        {/* Top Right Counter, Transition Style Switcher, Auto Play Button & Menu */}
-        <div className="flex items-center gap-2 sm:gap-4 shrink-0">
+        {/* Top Right Counter, SKIP Button, Transition Switcher, Auto Play & Menu */}
+        <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
           <PageIndicator
             currentPage={currentPage}
             totalPages={totalPages}
@@ -76,16 +77,28 @@ export const DigitalNavigation: React.FC<DigitalNavigationProps> = ({
             {String(currentPage).padStart(2, "0")} <span className="text-slate-500">/</span> {String(totalPages).padStart(2, "0")}
           </span>
 
+          {/* Prominent SKIP / Next Slide Fast Button for Mobile & Desktop */}
+          <button
+            onClick={() => onNavigate(Math.min(totalPages, currentPage + 1))}
+            disabled={currentPage === totalPages}
+            aria-label="Skip to next page"
+            title="Skip to next section"
+            className="flex items-center gap-1 px-2 py-1.5 sm:px-3 sm:py-1.5 rounded-sm bg-gradient-to-r from-aqua/20 to-blue-600/30 border border-aqua/60 hover:border-aqua text-aqua hover:text-white font-mono text-[10px] sm:text-xs font-bold tracking-widest uppercase transition-all shrink-0 active:scale-95 shadow-[0_0_12px_rgba(0,240,255,0.25)]"
+          >
+            <span>SKIP</span>
+            <FastForward className="w-3.5 h-3.5 stroke-aqua fill-aqua/30" />
+          </button>
+
           {/* Animation Style Switcher */}
           {onToggleAnimationStyle && (
             <button
               onClick={onToggleAnimationStyle}
               aria-label="Switch transition animation style"
               title={`Transition Mode: ${styleLabels[animationStyle]}`}
-              className="p-2 sm:px-2.5 sm:py-1.5 rounded-sm glass-panel border-white/10 hover:border-aqua/50 text-slate-300 hover:text-white font-mono text-[10px] tracking-widest uppercase transition-all flex items-center gap-1 shrink-0"
+              className="p-1.5 sm:px-2.5 sm:py-1.5 rounded-sm glass-panel border-white/10 hover:border-aqua/50 text-slate-300 hover:text-white font-mono text-[10px] tracking-widest uppercase transition-all flex items-center gap-1 shrink-0"
             >
               <Sparkles className="w-3.5 h-3.5 stroke-aqua shrink-0" />
-              <span className="hidden md:inline text-[10px]">{styleLabels[animationStyle]} MODE</span>
+              <span className="hidden md:inline text-[10px]">{styleLabels[animationStyle]}</span>
             </button>
           )}
 
@@ -95,7 +108,7 @@ export const DigitalNavigation: React.FC<DigitalNavigationProps> = ({
               onClick={onToggleAutoPlay}
               aria-label={isAutoPlay ? "Pause Auto Presentation" : "Start Auto Presentation"}
               title={isAutoPlay ? "Pause Auto Play" : "Start Auto Play"}
-              className={`p-2 sm:px-3 sm:py-1.5 rounded-sm border font-mono text-[10px] sm:text-xs tracking-widest uppercase transition-all flex items-center gap-1.5 shrink-0 ${
+              className={`p-1.5 sm:px-3 sm:py-1.5 rounded-sm border font-mono text-[10px] sm:text-xs tracking-widest uppercase transition-all flex items-center gap-1.5 shrink-0 ${
                 isAutoPlay
                   ? "bg-aqua text-slate-950 font-bold border-aqua shadow-[0_0_12px_rgba(0,240,255,0.5)]"
                   : "glass-panel text-white border-white/10 hover:border-aqua/50 hover:text-aqua"
@@ -118,7 +131,7 @@ export const DigitalNavigation: React.FC<DigitalNavigationProps> = ({
           <button
             onClick={() => setIsMenuOpen(true)}
             aria-label="Open Navigation Menu"
-            className="p-2 sm:px-4 sm:py-1.5 rounded-sm glass-panel hover:border-aqua/50 text-white font-mono text-xs tracking-widest uppercase transition-all flex items-center gap-1.5 hover:text-aqua shrink-0"
+            className="p-1.5 sm:px-4 sm:py-1.5 rounded-sm glass-panel hover:border-aqua/50 text-white font-mono text-xs tracking-widest uppercase transition-all flex items-center gap-1.5 hover:text-aqua shrink-0"
           >
             <Menu className="w-4 h-4 stroke-aqua" />
             <span className="hidden sm:inline">MENU</span>
